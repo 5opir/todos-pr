@@ -1,0 +1,1 @@
+print("Hello Ruslan Islamov from IVT-432!")
