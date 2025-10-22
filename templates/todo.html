@@ -1,0 +1,47 @@
+{% extends "home.html" %}
+
+{% block todo_container %}
+<main class="container">
+    <!-- Форма добавления задачи -->
+    <section class="mb-4">
+        <form method="post" class="row g-3">
+            <div class="col-auto">
+                <input type="text" name="item" class="form-control" 
+                       placeholder="Введите новую задачу" required>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success">Добавить задачу</button>
+            </div>
+        </form>
+    </section>
+
+    <hr>
+
+    <!-- Отображение одной задачи или списка -->
+    {% if todo %}
+        <!-- Детали одной задачи -->
+        <article class="card">
+            <div class="card-body">
+                <h4>Задача #{{ todo.id }}</h4>
+                <p class="card-text"><strong>{{ todo.item }}</strong></p>
+                <a href="/todo" class="btn btn-primary">← Назад к списку</a>
+            </div>
+        </article>
+    {% else %}
+        <!-- Список всех задач -->
+        <section>
+            <h2 class="text-center">Мои задачи (всего: {{ todos | length }})</h2>
+            <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                    {% for todo in todos %}
+                    <li class="list-group-item">
+                        {{ loop.index }}. 
+                        <a href="/todo/{{ todo.id }}">{{ todo.item }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    {% endif %}
+</main>
+{% endblock %}

@@ -1,8 +1,8 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 class Todo(BaseModel):
-    id: int
+    id: Optional[int] = None
     item: str
 
 class TodoItem(BaseModel):
